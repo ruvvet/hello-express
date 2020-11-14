@@ -6,6 +6,8 @@ const express = require('express');
 const app = express();
 
 // need to set the view with using the ejs engine
+// only needed to serve html pages
+//- this is a render engine that renders ejs/html pages
 app.set('view engine', 'ejs');
 
 // making a route
@@ -40,7 +42,10 @@ app.get('/about', function(req, res){
     res.render('about');
 })
 
-
+//search?char=lisa&type=mage >> this is a query string
+// :date >> is a route parameter
+// req.body >> body of request > typically json data
+// dependent on req header
 app.get('/blog/:date', function(req, res){
     // : equivalent to '?'????
     console.log(req)
@@ -58,6 +63,17 @@ app.get('/blog/:date', function(req, res){
     // res.sendFile(__dirname+'/views/blog.html');
 
 })
+
+//? type = query parameters
+    // has typical key:value pairings format
+    //key = value
+    // every key:val pair delimited by &
+
+// in express
+// req.query object
+
+
+
 
 // listen on this app
 // homeroute
@@ -78,3 +94,18 @@ app.listen(8000, () => {
 //embedded javascript
 // makes our templates 'smart'
 // so we can pass info from index.js into our ejs files
+
+// questions
+// using EJS + JS, optimal ways for passing info
+// how it ties to query?
+
+
+
+// route parameters are used to specify relational data
+//  /books >> SELECT * FROM books;
+//  /books/1 >> SELECT * FROM books WHERE id =1;
+
+// query data is done through query parameters
+// pagination >> query parameters
+//   /books?title=hello >>> SELECT * FROM books WHERE title LIKE '%hello%';
+
